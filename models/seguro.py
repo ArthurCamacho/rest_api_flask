@@ -1,5 +1,17 @@
-# O objetivo da classe é facilitar a estruturação do json que será retornado pela api
-class SeguroModel:
+from sql_alchemy import banco
+
+
+# A classe representa uma tabela do banco de dados
+class SeguroModel(banco.Model):
+    # Definindo nome da tabela
+    __tablename__ = 'seguros'
+
+    # Cada objeto representa uma coluna da tabela, a qual a classe representa
+    id = banco.Column(banco.Integer, primary_key=True)
+    tipo = banco.Column(banco.String(50))
+    descricao = banco.Column(banco.String(300))
+    valor = banco.Column(banco.Float(precision=2))
+
     def __init__(self, id, tipo, descricao, valor):
         self.id = id
         self.tipo = tipo
