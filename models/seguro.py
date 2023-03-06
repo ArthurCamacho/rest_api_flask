@@ -12,8 +12,7 @@ class SeguroModel(banco.Model):
     descricao = banco.Column(banco.String(300))
     valor = banco.Column(banco.Float(precision=2))
 
-    def __init__(self, id, tipo, descricao, valor):
-        self.id = id
+    def __init__(self, tipo, descricao, valor):
         self.tipo = tipo
         self.descricao = descricao
         self.valor = valor
@@ -27,3 +26,7 @@ class SeguroModel(banco.Model):
                     "descricao": self.descricao,
                     "valor": self.valor
                 }
+
+    def inserir_seguro(self):
+        banco.session.add(self)
+        banco.session.commit()
